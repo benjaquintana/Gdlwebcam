@@ -10,7 +10,7 @@
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
-        
+
         L.marker([-0.05711, -78.460761]).addTo(map)
             .bindPopup('Buscanos en calle San José <br> ')
             .openPopup()
@@ -38,6 +38,8 @@
         var camisas = document.getElementById('camisa_evento');
         var etiquetas = document.getElementById('etiquetas');
 
+      if(document.getElementById('calcular')) {
+
         calcular.addEventListener('click', calcularMontos);
 
         pase_dia.addEventListener('blur', mostrarDias);
@@ -55,7 +57,7 @@
                 errorDiv.innerHTML= 'Este campo es obligatorio';
                 this.style.border= '1px solid red';
                 errorDiv.style.border= '1px solid red';
-            } 
+            }
             else {
                 errorDiv.style.display= 'none';
                 this.style.border= '1px solid #cccccc';
@@ -80,7 +82,7 @@
             if(regalo.value === '') {
                 alert("Debes elegir un regalo");
                 regalo.focus();
-            } 
+            }
             else {
                 var boletosDia = parseInt (pase_dia.value, 10) || 0,
                     boletos2Dias = parseInt (pase_dosdias.value, 10) || 0,
@@ -89,7 +91,7 @@
                     cantEtiquetas = parseInt (etiquetas.value, 10) || 0;
 
                 var totalPagar = (boletosDia * 30) + (boletos2Dias * 45) + (boletosCompletos * 50) + ((cantCamisas * 10) * .93) + (cantEtiquetas * 2);
-               
+
                 var listadoProductos = [];
                 if(boletosDia >= 1) {
                     listadoProductos.push(boletosDia + ' Pase por Día');
@@ -137,7 +139,7 @@
                 document.getElementById(diasElegidos[i]).style.display = 'block';
             }
         }
-
+      }
     })
 })();
 
@@ -145,9 +147,30 @@
 
 
 $(function(){
-    
+
     //Letterin
     $('.nombre_sitio').lettering();
+
+    //Menu Fijo
+    var windowHeight = $(window).height();
+    var barraAltura = $('.barra').innerHeight();
+
+    $(window).scroll(function() {
+        var scroll = $(window).scrollTop();
+        if(scroll > windowHeight) {
+            $('.barra').addClass('fixed');
+            $('body').css({'margin-top': barraAltura+'px'});
+        }
+        else {
+          $('.barra').removeClass('fixed');
+          $('body').css({'margin-top': '0px'});
+        }
+    });
+
+    //Menu Responsive
+    $('.menu_movil').on('click', function() {
+      $('.navegacion_principal').slideToggle();
+    });
 
     //Programa de Conferencia
     $('.programa_evento .info_curso:first').show();
