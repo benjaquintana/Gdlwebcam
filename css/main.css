@@ -904,6 +904,41 @@ input[disabled].boton {
   text-align: center;
 }
 
+/* Calendario */
+div.calendario::after {
+  clear: both;
+  display: block;
+  content: '';
+}
+div.dia {
+  width: 50%;
+  float: left;
+  border: 2px solid #e1e1e1;
+  transition: all .3s ease;
+}
+@media only screen and (min-width: 768px) {
+  div.dia {
+    width: 33.3%;
+    min-height: 24rem;
+    padding: 2rem;
+  }
+}
+div.dia:hover {
+  background-color: #e1e1e1;
+  -webkit-transform: scale(1.1);
+}
+div.dia p {
+  font-size: 1em;
+}
+div.dia p.titulo {
+  color: #fe4918;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+div.dia {
+  color: #fe4918;
+  font-size: 1.6em;
+}
 
 /* ==========================================================================
    Helper classes
