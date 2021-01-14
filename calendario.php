@@ -24,7 +24,7 @@
         <div class="calendario">
             <?php
                 $calendario = array();
-                while( $eventos = $resultado->fetch_assoc() ) { 
+                while( $eventos = $resultado->fetch_assoc() ) {
                     $fecha = $eventos['fecha_evento'];
                     $evento = array(
                         'titulo' => $eventos['nombre_evento'],
@@ -37,26 +37,26 @@
                     $calendario[$fecha] [] = $evento; ?>
                 <?php } ?>
 
-                <?php 
+                <?php
                     //Imprime todos los eventos
                     foreach ($calendario as $dia => $lista_eventos) { ?>
                         <h3>
                             <i class="fa fa-calendar"></i>
-                            <?php 
+                            <?php
                                 //Unix
                                 setlocale(LC_TIME, 'es_ES.UTF-8');
                                 //Windows
                                 setlocale(LC_TIME, 'spanish');
-                                
+
                                 echo strftime("%A, %d de %B del %Y", strtotime($dia) ); ?>
                         </h3>
 
                     <?php foreach ($lista_eventos as $evento) { ?>
-                        
+
                         <div class="dia">
                             <p class="titulo"><?php echo $evento['titulo']; ?></p>
                             <p class="hora">
-                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                <i class="far fa-clock" aria-hidden="true"></i>
                                 <?php echo $evento['fecha'] . " " . $evento['hora']; ?>
                             </p>
                             <p>
@@ -69,8 +69,8 @@
                             </p>
                         </div>
 
-                    <?php } //Fin foreach eventos ?> 
-                   <?php } //Fin foreach dias ?> 
+                    <?php } //Fin foreach eventos ?>
+                   <?php } //Fin foreach dias ?>
         </div> <!--Calendario-->
         <?php
             $conn->close();
