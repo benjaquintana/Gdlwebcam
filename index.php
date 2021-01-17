@@ -18,10 +18,27 @@
       <div class="contenedor">
         <div class="programa_evento">
           <h2>Programa del Evento</h2>
+
+          <?php
+            try {
+                require_once('includes/funciones/db_conexion.php');
+                $sql = " SELECT * FROM `categoria_evento` ";
+                $sql .= " FROM eventos ";
+                $sql .= " INNER JOIN categoria_evento ";
+                $sql .= " ON eventos.id_cat_evento = categoria_evento.id_categoria ";
+                $sql .= " INNER JOIN invitados ";
+                $sql .= " ON eventos.id_inv = invitados.id_invitado ";
+                $sql .= " ORDER BY id_evento ";
+                $resultado = $conn->query($sql);
+            } catch (\Exception $e) {
+                echo $e->getMessage();
+            }
+          ?>
+
           <nav class="menu_programa">
-            <a href="#talleres"><i class="fas fa-code"></i> Talleres</a>
-            <a href="#conferencias"><i class="fas fa-comment"></i> Conferencias</a>
-            <a href="#seminarios"><i class="fas fa-university"></i> Seminarios</a>
+            <?php while($cat = $resultado->fetch_array(MYSQLI_ASSOC)) {?>
+              <a href="#talleres"><i class="fas fa-code"></i> Talleres</a>
+            <?php } ?>
           </nav>
           <div id="talleres" class="info_curso ocultar clearfix">
             <div class="detalle_evento">
@@ -75,47 +92,11 @@
       </div>
     </div>
   </section>
-  <section class="invitados contenedor seccion">
-    <h2>Nuestros Invitados</h2>
-    <ul class="lista_invitados clearfix">
-      <li>
-        <div class="invitado">
-          <img src="img/invitado1.jpg" alt="imagen_invitado">
-          <p>Rafael Bautista</p>
-        </div>
-      </li>
-      <li>
-        <div class="invitado">
-          <img src="img/invitado2.jpg" alt="imagen_invitado">
-          <p>Shari Herrera</p>
-        </div>
-      </li>
-      <li>
-        <div class="invitado">
-          <img src="img/invitado3.jpg" alt="imagen_invitado">
-          <p>Gregorio Sanches</p>
-        </div>
-      </li>
-      <li>
-        <div class="invitado">
-          <img src="img/invitado4.jpg" alt="imagen_invitado">
-          <p>Susana Rivera</p>
-        </div>
-      </li>
-      <li>
-        <div class="invitado">
-          <img src="img/invitado5.jpg" alt="imagen_invitado">
-          <p>Harol García</p>
-        </div>
-      </li>
-      <li>
-        <div class="invitado">
-          <img src="img/invitado6.jpg" alt="imagen_invitado">
-          <p>Susan Sanches</p>
-        </div>
-      </li>
-    </ul>
-  </section>
+
+<!--Invitados-->
+<?php include_once 'includes/templates/invitados.php'?>
+<!--Fin Invtados-->
+
   <div class="contador parallax">
     <div class="contador">
       <ul class="resumen_evento clearfix">
