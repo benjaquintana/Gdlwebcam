@@ -1,21 +1,8 @@
 (function() {
     "use strict";
+
     var regalo = document.getElementById('regalo');
-
     document.addEventListener('DOMContentLoaded', function(){
-
-        //Campo de mapa
-        var map = L.map('map').setView([-0.05711, -78.460761], 17);
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        L.marker([-0.05711, -78.460761]).addTo(map)
-            .bindPopup('Buscanos en calle San José <br> ')
-            .openPopup()
-            .bindTooltip('Estamos en tu barrio')
-            .openTooltip();
 
         //Campo Datos Usuario
         var nombre = document.getElementById('nombre');
@@ -38,7 +25,9 @@
         var camisas = document.getElementById('camisa_evento');
         var etiquetas = document.getElementById('etiquetas');
 
-      if(document.getElementById('calcular')) {
+
+
+        if(document.getElementById('calcular')) {
 
         calcular.addEventListener('click', calcularMontos);
 
@@ -82,8 +71,7 @@
             if(regalo.value === '') {
                 alert("Debes elegir un regalo");
                 regalo.focus();
-            }
-            else {
+            } else {
                 var boletosDia = parseInt (pase_dia.value, 10) || 0,
                     boletos2Dias = parseInt (pase_dosdias.value, 10) || 0,
                     boletosCompletos = parseInt (pase_completo.value, 10) || 0,
@@ -147,6 +135,18 @@
 
 
 $(function(){
+    //Campo de mapa
+        var map = L.map('map').setView([-0.05711, -78.460761], 17);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        L.marker([-0.05711, -78.460761]).addTo(map)
+            .bindPopup('Buscanos en calle San José <br> ')
+            .openPopup()
+            .bindTooltip('Estamos en tu barrio')
+            .openTooltip();
 
     //Letterin
     $('.nombre_sitio').lettering();
@@ -191,7 +191,7 @@ $(function(){
     $('.resumen_evento li:nth-child(4) p').animateNumber({ number: 9}, 1200);
 
     //Cuenta regrasiva
-    $('.cuenta_regresiva').countdown('2020/06/01 00:00:00', function(event){
+    $('.cuenta_regresiva').countdown('2021/04/01 00:00:00', function(event){
         $('#dias').html(event.strftime('%D'));
         $('#horas').html(event.strftime('%H'));
         $('#minutos').html(event.strftime('%M'));
