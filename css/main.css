@@ -620,7 +620,7 @@ div.tabla_precio ul li {
   color: #868686;
   line-height: 26px;
 }
-div.tabla_precio ul li::before {
+div.tabla_precio ul li:before {
   content: '\f00c';
   font-family: 'FontAwesome';
   display: inline-block;

@@ -25,6 +25,7 @@
   </footer>
 
   <script src="js/vendor/modernizr-3.7.1.min.js"></script>
+  <script src="https://kit.fontawesome.com/f5164e1266.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
