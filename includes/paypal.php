@@ -7,8 +7,8 @@ require 'paypal/autoload.php';
 
 $apiContext = new \PayPal\Rest\ApiContext(
     new \PayPal\Auth\OAuthTokenCredential(
-        '',     // ClientID
-        ''      // ClientSecret
+        'AXsWy0N2lr0vvEsEw68ZE0utU2JiksjwALRlC-I2R8lbdAvIkASLrjPEiI4xNKA9eaFQZJj9xGLTfcUI', // ClientID
+        'EMzfdaEaHZ7sfEcjMS3_B0OR9iSyPxTuRtfUemzuXLWMYCSRhb_aqVsQOtLwjPl6zVS2gVv7XZgzmxSS'  // ClientSecret
     )
 );
 
