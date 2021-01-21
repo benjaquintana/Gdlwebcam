@@ -202,6 +202,7 @@ $(function(){
 
     //Colorbox
     $('.invitado_info').colorbox({inline:true, width:"50%"});
+    $('.boton_newsletter').colorbox({inline:true, width:"50%"});
 
     //Clase del menu
     $('body.conferencia .navegacion_principal a:contains("Conferencia")').addClass('activo');
