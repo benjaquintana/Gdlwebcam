@@ -957,6 +957,21 @@ div.cboxElement {
   text-align: center;
 }
 
+/* Resultado Pago*/
+.resultado {
+  text-align: center;
+  padding: 1rem;
+  color:#ffffff;
+  max-width: 400px;
+  margin: 0 auto;
+}
+.correcto {
+  background-color: rgb(2,173,2);
+}
+.error {
+  background-color: red;
+}
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */
