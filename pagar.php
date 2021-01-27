@@ -1,5 +1,4 @@
 <?php
-
 if(!isset($_POST['submit'])) {
   exit("hubo un error");
 }
@@ -44,8 +43,9 @@ if(isset($_POST['submit'])):
 
   try {
     require_once('includes/funciones/db_conexion.php');
-    $stmt = $conn->prepare("INSERT INTO registrados (nombre_registrado, apellido_registrado, email_registrado, fecha_registro, pases_articulos, talleres_registrados, regalo, total_pagado) VALUES (?,?,?,?,?,?,?,?)");
-    $stmt->bind_param("ssssssis", $nombre, $apellido, $email, $fecha, $pedido, $registro, $regalo, $total);
+    $stmt = $conn->prepare("INSERT INTO registrados (nombre_registrado, apellido_registrado, email_registrado, fecha_registro, pases_articulos, talleres_registrados, regalo, total_pagado, pagado) VALUES (?,?,?,?,?,?,?,?,?)");
+    $pagado = 0;
+    $stmt->bind_param("ssssssisi", $nombre, $apellido, $email, $fecha, $pedido, $registro, $regalo, $total, $pagado);
     $stmt->execute();
     $id_registro = $stmt->insert_id;
     $stmt->close();
@@ -54,9 +54,6 @@ if(isset($_POST['submit'])):
   } catch (Exception $e) {
     $error = $e->getMessage();
   }
-  echo "<pre>";
-    var_dump($_POST);
-  echo "</pre>";
 endif;
 
 $compra = new Payer();
@@ -104,7 +101,7 @@ $listaArticulos->setItems($arreglo_pedido);
 
 $cantidad = new Amount();
 $cantidad->setCurrency('USD')
-          ->setTotal($total);
+         ->setTotal($total);
 
 $transaccion = new Transaction();
 $transaccion->setAmount($cantidad)
@@ -113,8 +110,9 @@ $transaccion->setAmount($cantidad)
                ->setInvoiceNumber($id_registro);
 
 $redireccionar = new RedirectUrls();
-$redireccionar->setReturnUrl(URL_SITIO . "/pago_finalizado.php?exito=true&id_pago{$id_registro}")
-              ->setCancelUrl(URL_SITIO . "/pago_finalizado.php?exito=false&id_pago{$id_registro}");
+$redireccionar->setReturnUrl(URL_SITIO . "/pago_finalizado.php?&id_pago={$id_registro}")
+              ->setCancelUrl(URL_SITIO . "/pago_finalizado.php?&id_pago={$id_registro}");
+
 
 $pago = new Payment();
 $pago->setIntent("sale")
@@ -122,14 +120,17 @@ $pago->setIntent("sale")
      ->setRedirectUrls($redireccionar)
      ->setTransactions(array($transaccion));
 
-     try {
-       $pago->create($apiContext);
-     } catch (PayPal\Exception\PayPalConnectionException $pce) {
-       // Don't spit out errors or use "exit" like this in production code
-       echo '<pre>';print_r(json_decode($pce->getData()));exit; echo "</pre>";
-   }
+    try {
+        $pago->create($apiContext);
+    } catch (PayPal\Exception\PayPalConnectionException $pce) {
+        // Don't spit out errors or use "exit" like this in production code
+        echo "<pre>";
+            print_r(json_decode($pce->getData()));
+            exit;
+        echo "</pre>";
+    }
 
 $aprobado = $pago->getApprovalLink();
 
 header("Location: {$aprobado}");
-?>
+
