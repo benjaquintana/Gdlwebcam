@@ -171,9 +171,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="crear_admin.php" class="nav-link">
                   <i class="fas fa-calendar-plus nav-icon"></i>
-                  <p>Agregar Eventos</p>
+                  <p>Agregar Administrador</p>
                 </a>
               </li>
             </ul>
