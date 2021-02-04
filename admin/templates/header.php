@@ -10,8 +10,12 @@
     <!-- Flag style -->
     <link rel="stylesheet" href="css/flag-icon.min.css">
     <!-- icheck bootstrap -->
-    <!--<link rel="stylesheet" href="css/icheck-bootstrap.min.css">-->
-    <!-- Theme style -->
+    <link rel="stylesheet" href="css/icheck-bootstrap.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="css/buttons.bootstrap4.min.css">
+    <!-- Sweet Alert 2 -->
     <link rel="stylesheet" href="css/sweetalert2.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="css/adminlte.min.css">

@@ -165,7 +165,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="lista_admin.php" class="nav-link">
                   <i class="fas fa-list-alt nav-icon"></i>
                   <p>Ver Todos</p>
                 </a>
