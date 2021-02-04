@@ -1,4 +1,6 @@
 <?php
+    // Sesión
+    require_once 'funciones/sesiones.php';
     // Funciones
     require_once 'funciones/funciones.php';
     // Header
@@ -35,7 +37,7 @@
 
             <div class="card-body">
                 <!-- form start -->
-                <form role="form" name="crear_admin" id="crear_admin" method="POST" action="insertar_admin.php">
+                <form role="form" name="crear_admin" id="crear_admin" method="post" action="insertar_admin.php">
                 <div class="card-body">
                     <div class="form-group">
                         <label for="usuario">Usuario</label>

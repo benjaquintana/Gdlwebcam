@@ -53,7 +53,7 @@
           <!-- Menu Footer-->
           <li class="user-footer">
             <a href="#" class="btn btn-default btn-flat">Perfil</a>
-            <a href="#" class="btn btn-default btn-flat float-right">Cerrar Sesión</a>
+            <a href="login.php?cerrar_sesion=true" class="btn btn-default btn-flat float-right">Cerrar Sesión</a>
           </li>
         </ul>
       </li>

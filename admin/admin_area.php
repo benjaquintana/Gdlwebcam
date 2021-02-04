@@ -1,10 +1,14 @@
 <?php
-  // Header
-  require_once 'templates/header.php';
-  // Barra
-  require_once 'templates/barra.php';
-  // Sidebar
-  require_once 'templates/navegacion.php';
+    // Sesión
+    require_once 'funciones/sesiones.php';
+    // Funciones
+    require_once 'funciones/funciones.php';
+    // Header
+    require_once 'templates/header.php';
+    // Barra
+    require_once 'templates/barra.php';
+    // Sidebar
+    require_once 'templates/navegacion.php';
 ?>
 
 
