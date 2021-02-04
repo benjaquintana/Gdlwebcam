@@ -17,9 +17,9 @@ $(document).ready(function() {
                     )
                 } else {
                     Swal.fire({
-                      icon: 'error',
-                      title: 'Error',
-                      text: 'Hubo un error, elige otro usuario'
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Hubo un error, elige otro usuario'
                     })
                 }
             }
