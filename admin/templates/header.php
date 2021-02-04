@@ -10,5 +10,8 @@
   <!-- Flag style -->
   <link rel="stylesheet" href="css/flag-icon.min.css">
   <!-- Theme style -->
+  <link rel="stylesheet" href="css/sweetalert2.min.css">
+  <!-- Theme style -->
   <link rel="stylesheet" href="css/adminlte.min.css">
+
 </head>

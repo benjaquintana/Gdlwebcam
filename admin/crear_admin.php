@@ -7,7 +7,6 @@
     require_once 'templates/barra.php';
     // Sidebar
     require_once 'templates/navegacion.php';
-
 ?>
 
     <!-- Content Wrapper. Contains page content -->
