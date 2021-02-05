@@ -13,14 +13,14 @@ $(document).ready(function() {
                 if(resultado.respuesta == "exito") {
                     Swal.fire(
                         'Correcto',
-                        'El adminstrador se creó correctamente',
+                        'El adminstrador se guardo correctamente',
                         'success'
                     )
                 } else {
                     Swal.fire({
                         icon: 'error',
                         title: 'Error',
-                        text: 'Hubo un error, elige otro usuario'
+                        text: 'Hubo un error'
                     })
                 }
             }

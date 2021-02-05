@@ -40,17 +40,24 @@
 
     //Editar Usuario
     if ($_POST['registro'] == 'actualizar'){
-        $opciones = array(
-            'cost' => 12
-        );
         try {
-            $hash_password = password_hash($password, PASSWORD_BCRYPT, $opciones);
-            $stmt = $conn->prepare('UPDATE administradores SET usuario = ?, nombre = ?, apellido = ?, password = ? WHERE id_admin = ? ');
-            $stmt->bind_param("ssssi", $usuario, $nombre, $apellido, $hash_password, $id_registro);
+            if(empty($_POST['password'])) {
+                $stmt = $conn->prepare('UPDATE administradores SET usuario = ?, nombre = ?, apellido = ?, editado = NOW() WHERE id_admin = ? ');
+                $stmt->bind_param("sssi", $usuario, $nombre, $apellido, $id_registro);
+            } else {
+                $opciones = array(
+                'cost' => 12
+                );
+                $hash_password = password_hash($password, PASSWORD_BCRYPT, $opciones);
+                $stmt = $conn->prepare('UPDATE administradores SET usuario = ?, nombre = ?, apellido = ?, password = ?, editado = NOW() WHERE id_admin = ? ');
+                $stmt->bind_param("ssssi", $usuario, $nombre, $apellido, $hash_password, $id_registro);
+            }
+
+
             $stmt->execute();
             if($stmt->affected_rows) {
                 $respuesta = array(
-                    'respuesta' => 'correcto',
+                    'respuesta' => 'exito',
                     'id_actualizado' => $stmt->insert_id
                 );
             } else {
@@ -78,7 +85,7 @@
             $stmt = $conn->prepare("SELECT * FROM administradores WHERE usuario = ? ");
             $stmt->bind_param("s", $usuario);
             $stmt->execute();
-            $stmt->bind_result($id_admin, $usuario_admin, $nombre_admin, $apellido_admin, $password_admin);
+            $stmt->bind_result($id_admin, $usuario_admin, $nombre_admin, $apellido_admin, $password_admin, $editado);
             if($stmt->affected_rows) {
                 $existe = $stmt->fetch();
                 if($existe) {
