@@ -1,20 +1,21 @@
 <?php
     // Funciones
     require_once 'funciones/funciones.php';
+    //Datos Comunes
+    $usuario = $_POST['usuario'];
+    $nombre = $_POST['nombre'];
+    $apellido = $_POST['apellido'];
+    $password = $_POST['password'];
+    $id_registro = $_POST['id_registro'];
 
-    if (isset($_POST['agregar_admin'])) {
-        $usuario = $_POST['usuario'];
-        $nombre = $_POST['nombre'];
-        $apellido = $_POST['apellido'];
-        $password = $_POST['password'];
-
+    //Nuevo Usuario
+    if ($_POST['registro'] == 'nuevo'){
         $opciones = array(
             'cost' => 12
         );
         $password_hashed = password_hash($password, PASSWORD_BCRYPT, $opciones);
 
         try {
-            include_once 'funciones/funciones.php';
             $stmt = $conn->prepare("INSERT INTO administradores (usuario, nombre, apellido, password) VALUES (?,?,?,?)");
             $stmt->bind_param("ssss", $usuario, $nombre, $apellido, $password_hashed);
             $stmt->execute();
@@ -35,6 +36,36 @@
             echo "Error: " . $e->getMessage();
         }
         die(json_encode($respuesta));
+    }
+
+    //Editar Usuario
+    if ($_POST['registro'] == 'actualizar'){
+        $opciones = array(
+            'cost' => 12
+        );
+        try {
+            $hash_password = password_hash($password, PASSWORD_BCRYPT, $opciones);
+            $stmt = $conn->prepare('UPDATE administradores SET usuario = ?, nombre = ?, apellido = ?, password = ? WHERE id_admin = ? ');
+            $stmt->bind_param("ssssi", $usuario, $nombre, $apellido, $hash_password, $id_registro);
+            $stmt->execute();
+            if($stmt->affected_rows) {
+                $respuesta = array(
+                    'respuesta' => 'correcto',
+                    'id_actualizado' => $stmt->insert_id
+                );
+            } else {
+              $respuesta = array(
+                'respuesta' => 'error'
+              );
+            }
+            $stmt->close();
+            $conn->close();
+        } catch (Exception $e) {
+            $respuesta = array(
+              'respuesta' => $e->getMessage()
+            );
+        }
+        die(json_encode($respueta));
     }
 
     //Login

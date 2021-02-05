@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('#crear_admin').on('submit', function(e) {
+    $('#guardar_registro').on('submit', function(e) {
         e.preventDefault();
         var datos = $(this).serializeArray();
         $.ajax({
@@ -8,6 +8,7 @@ $(document).ready(function() {
             url: $(this).attr('action'),
             dataType: 'json',
             success: function(data) {
+              console.log(data);
                 var resultado = data;
                 if(resultado.respuesta == "exito") {
                     Swal.fire(
