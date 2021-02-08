@@ -38,7 +38,7 @@
             <div class="card-body">
                 <!-- form start -->
                 <form role="form" name="guardar_registro" id="guardar_registro" method="post" action="modelo_admin.php">
-                <div class="card-body">
+                <div class="card-body has-validation">
                     <div class="form-group">
                         <label for="usuario">Usuario</label>
                         <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Crea tu Usuario">
@@ -55,12 +55,17 @@
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Crea tu Password">
                     </div>
+                    <div class="form-group">
+                        <label for="password">Repetir Password</label>
+                        <input type="password" class="form-control" id="repetir_password" name="repetir_password" placeholder="Repite tu Password">
+                        <span id="resultado_password" class="help-block"></span>
+                    </div>
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
                     <input type="hidden" name="registro" value="nuevo">
-                    <button type="submit" class="btn btn-primary">Añadir</button>
+                    <button type="submit" class="btn btn-primary" id="crear_registro">Añadir</button>
                 </div>
                 </form>
             </div>

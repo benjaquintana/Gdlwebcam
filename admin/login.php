@@ -18,9 +18,9 @@
                 <a href="../index.php" class="h1"><b>GDL</b>WebCamp</a>
             </div>
             <div class="card-body">
-                <p class="login-box-msg">Inicia sesión aquí</p>
+                <p class="login-box-msg">Inicia Sesión Aquí</p>
 
-                <form name="login_admin-form" id="login_admin" method="post" action="insertar_admin.php">
+                <form name="login_admin-form" id="login_admin" method="post" action="modelo_admin.php">
                   <div class="input-group mb-3">
                       <input type="text" class="form-control" name="usuario" placeholder="Usuario">
                       <div class="input-group-append">

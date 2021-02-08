@@ -16,7 +16,7 @@
 <!-- jQuery -->
 <script src="js/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 <!-- DataTables  & Plugins -->
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/dataTables.bootstrap4.min.js"></script>
