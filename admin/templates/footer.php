@@ -33,6 +33,7 @@
 <!-- Font Awesome -->
 <script src="https://kit.fontawesome.com/f5164e1266.js" crossorigin="anonymous"></script>
 <!-- User jQuery -->
+<script src="js/login_ajax.js"></script>
 <script src="js/admin_ajax.js"></script>
 <!-- Sweeralert2 -->
 <script src="js/sweetalert2.min.js"></script>

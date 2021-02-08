@@ -9,44 +9,6 @@
     $id_registro = $_POST['id_registro'];
     $fecha = date('Y-m-d H:i:s');
 
-    //Login
-    if (isset($_POST['login_admin'])) {
-        try {
-            include_once 'funciones/funciones.php';
-            $stmt = $conn->prepare("SELECT * FROM administradores WHERE usuario = ? ");
-            $stmt->bind_param("s", $usuario);
-            $stmt->execute();
-            $stmt->bind_result($id_admin, $usuario_admin, $nombre_admin, $apellido_admin, $password_admin, $editado);
-            if($stmt->affected_rows) {
-                $existe = $stmt->fetch();
-                if($existe) {
-                    if(password_verify($password, $password_admin)) {
-                        session_start();
-                        $_SESSION['usuario'] = $usuario_admin;
-                        $_SESSION['nombre'] = $nombre_admin;
-                        $respuesta = array(
-                            'respuesta' => 'exitoso',
-                            'usuario' => $nombre_admin . " " . $apellido_admin
-                        );
-                    } else {
-                      $respuesta = array(
-                        'respuesta' => 'error'
-                      );
-                    }
-                } else {
-                    $respuesta = array(
-                        'respuesta' => 'error'
-                    );
-                }
-            }
-            $stmt->close;
-            $conn->close;
-        } catch (Exception $e) {
-            echo "Error: " . $e->getMessage();
-        }
-        die(json_encode($respuesta));
-    }
-
     //Nuevo Usuario
     if ($_POST['registro'] == 'nuevo'){
         $opciones = array(
@@ -122,7 +84,7 @@
             if($stmt->affected_rows) {
                 $respuesta = array(
                     'respuesta' => 'exito',
-                    'id_eliminado' => '$id_borrar'
+                    'id_eliminado' => $id_borrar
                 );
             } else {
                 $respuesta = array(

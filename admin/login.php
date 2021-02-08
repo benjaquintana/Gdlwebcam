@@ -20,7 +20,7 @@
             <div class="card-body">
                 <p class="login-box-msg">Inicia Sesión Aquí</p>
 
-                <form name="login_admin-form" id="login_admin" method="post" action="modelo_admin.php">
+                <form name="login_admin-form" id="login_admin" method="post" action="login_admin.php">
                   <div class="input-group mb-3">
                       <input type="text" class="form-control" name="usuario" placeholder="Usuario">
                       <div class="input-group-append">

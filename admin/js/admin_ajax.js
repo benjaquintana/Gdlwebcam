@@ -1,36 +1,4 @@
 $(document).ready(function() {
-    //Login User
-    $('#login_admin').on('submit', function(e) {
-        e.preventDefault();
-        var datos = $(this).serializeArray();
-        $.ajax({
-            type: $(this).attr('method'),
-            data: datos,
-            url: $(this).attr('action'),
-            dataType: 'json',
-            success: function(data) {
-                var resultado = data;
-                if(resultado.respuesta == "exitoso") {
-                    Swal.fire(
-                        'Login Correcto',
-                        'Bienvenido(a) '+resultado.usuario+'',
-                        'success'
-                    )
-                    setTimeout(function(){
-                        window.location.href = 'admin_area.php';
-                    }, 2000);
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'Usuario o Password Incorrectos'
-                    })
-                }
-            }
-        })
-
-    });
-
     //Guardar Registro
     $('#guardar_registro').on('submit', function(e) {
         e.preventDefault();
@@ -76,32 +44,32 @@ $(document).ready(function() {
             confirmButtonText: '¡Si, Eliminar!',
             cancelButtonText: 'Cancelar'
         }).then((result) => {
-            $.ajax({
-                type: 'post',
-                data: {
-                  id: id,
-                  registro: 'eliminar'
-                },
-                url: 'modelo_'+tipo+'.php',
-                success:function(data) {
-                    var resultado = JSON.parse(data);
-                    if (resultado.respuesta == 'exito') {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: 'post',
+                    data: {
+                      id: id,
+                      registro: 'eliminar'
+                    },
+                    url: 'modelo_'+tipo+'.php',
+                    success:function(data) {
+                        var resultado = JSON.parse(data);
                         Swal.fire(
                             '¡Borrado!',
                             'El administrador ha sido eliminado',
                             'success'
                         )
-                        jQuery('[data-id="'+resultado.id_eliminado+'"]').parents('tr').remove();
-                    } else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Error',
-                            text: 'No se pudo eliminar'
-                        })
+                        console.log(resultado);
+                        jQuery('[data-id="'+ resultado.id_eliminado +'"]').parents('tr').remove();
                     }
-
-                }
-            })
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'No se pudo eliminar'
+                });
+            }
         });
     });
 });
