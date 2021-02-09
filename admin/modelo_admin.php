@@ -7,6 +7,7 @@
     $apellido = $_POST['apellido'];
     $password = $_POST['password'];
     $id_registro = $_POST['id_registro'];
+    $nivel = $_POST['nivel'];
     $fecha = date('Y-m-d H:i:s');
 
     //Nuevo Usuario
@@ -17,8 +18,8 @@
         $password_hashed = password_hash($password, PASSWORD_BCRYPT, $opciones);
 
         try {
-            $stmt = $conn->prepare("INSERT INTO administradores (usuario, nombre, apellido, password, editado) VALUES (?,?,?,?,NOW()) ");
-            $stmt->bind_param("ssss", $usuario, $nombre, $apellido, $password_hashed);
+            $stmt = $conn->prepare("INSERT INTO administradores (usuario, nombre, apellido, password, editado, nivel) VALUES (?,?,?,?,NOW(),?) ");
+            $stmt->bind_param("ssssi", $usuario, $nombre, $apellido, $password_hashed, $nivel);
             $stmt->execute();
             $id_registro = $stmt->insert_id;
             if($id_registro > 0) {
@@ -43,15 +44,15 @@
     if ($_POST['registro'] == 'actualizar'){
         try {
             if(empty($_POST['password'])) {
-                $stmt = $conn->prepare('UPDATE administradores SET usuario = ?, nombre = ?, apellido = ?, editado = NOW() WHERE id_admin = ? ');
-                $stmt->bind_param("sssi", $usuario, $nombre, $apellido, $id_registro);
+                $stmt = $conn->prepare('UPDATE administradores SET usuario = ?, nombre = ?, apellido = ?, editado = NOW(), nivel = ? WHERE id_admin = ? ');
+                $stmt->bind_param("sssii", $usuario, $nombre, $apellido, $nivel, $id_registro);
             } else {
                 $opciones = array(
                 'cost' => 12
                 );
                 $hash_password = password_hash($password, PASSWORD_BCRYPT, $opciones);
-                $stmt = $conn->prepare('UPDATE administradores SET usuario = ?, nombre = ?, apellido = ?, password = ?, editado = NOW() WHERE id_admin = ? ');
-                $stmt->bind_param("ssssi", $usuario, $nombre, $apellido, $hash_password, $id_registro);
+                $stmt = $conn->prepare('UPDATE administradores SET usuario = ?, nombre = ?, apellido = ?, password = ?, editado = NOW(), nivel = ? WHERE id_admin = ? ');
+                $stmt->bind_param("ssssii", $usuario, $nombre, $apellido, $hash_password, $nivel, $id_registro);
             }
             $stmt->execute();
             if($stmt->affected_rows) {

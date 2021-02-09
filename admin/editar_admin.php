@@ -61,6 +61,16 @@
                         <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingresa tu Apellido"  value="<?php echo $admin['apellido']; ?>">
                     </div>
                     <div class="form-group">
+                        <label>Seleccione el Nivel del Administrador</label>
+                        <select id="nivel" class="custom-select" name="nivel" required>
+                            <option value="">-- Selecciona un Nivel --</option>
+                            <option value="1">Nivel 1</option>
+                            <option value="2">Nivel 2</option>
+                            <option value="3">Nivel 3</option>
+                            <option value="4">Nivel 4</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Crea tu Password">
                     </div>

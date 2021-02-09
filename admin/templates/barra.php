@@ -38,7 +38,7 @@
       <li class="nav-item dropdown user-menu">
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
           <img src="img/user2-160x160.jpg" class="user-image img-circle elevation-2" alt="User Image">
-          <span class="d-none d-md-inline">Benjamin Quintana</span>
+          <span class="d-none d-md-inline"><?php echo $_SESSION['nombre'] . " " . $_SESSION['apellido']; ?></span>
         </a>
         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <!-- User image -->
@@ -46,8 +46,8 @@
             <img src="img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
 
             <p>
-              Benjamin Quintana - Web Developer
-              <small>Member since Nov. 2012</small>
+              <?php echo $_SESSION['nombre'] . " " . $_SESSION['apellido']; ?>
+              <small></small>
             </p>
           </li>
           <!-- Menu Footer-->

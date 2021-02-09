@@ -39,22 +39,44 @@
                 <!-- form start -->
                 <form role="form" name="guardar_registro" id="guardar_registro" method="post" action="modelo_admin.php">
                 <div class="card-body has-validation">
+
+                    <!-- Usuario -->
                     <div class="form-group">
                         <label for="usuario">Usuario</label>
                         <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Crea tu Usuario">
                     </div>
+
+                    <!-- Nombre -->
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
                         <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresa tu Nombre Completo">
                     </div>
+
+                    <!-- Apellido -->
                     <div class="form-group">
-                        <label for="nombre">Apellido</label>
+                        <label for="apellido">Apellido</label>
                         <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingresa tu Apellido">
                     </div>
+
+                    <!-- Nivel -->
+                    <div class="form-group">
+                        <label>Seleccione el Nivel del Administrador</label>
+                        <select id="nivel" class="custom-select" name="nivel" required>
+                            <option value="">-- Selecciona un Nivel --</option>
+                            <option value="1">Nivel 1</option>
+                            <option value="2">Nivel 2</option>
+                            <option value="3">Nivel 3</option>
+                            <option value="4">Nivel 4</option>
+                        </select>
+                    </div>
+
+                    <!-- Password -->
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Crea tu Password">
                     </div>
+
+                    <!-- Repetir Password -->
                     <div class="form-group">
                         <label for="password">Repetir Password</label>
                         <input type="password" class="form-control" id="repetir_password" name="repetir_password" placeholder="Repite tu Password">
