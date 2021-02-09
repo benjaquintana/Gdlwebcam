@@ -2,21 +2,12 @@
     // Funciones
     require_once 'funciones/funciones.php';
     //Datos Comunes
-    $usuario = $_POST['usuario'];
-    $nombre = $_POST['nombre'];
-    $apellido = $_POST['apellido'];
-    $password = $_POST['password'];
-    $id_registro = $_POST['id_registro'];
-    $nivel = $_POST['nivel'];
-    $fecha = date('Y-m-d H:i:s');
+
 
     //Nuevo Usuario
     if ($_POST['registro'] == 'nuevo'){
-        $opciones = array(
-            'cost' => 12
-        );
-        $password_hashed = password_hash($password, PASSWORD_BCRYPT, $opciones);
 
+        die(json_encode($_POST));
         try {
             $stmt = $conn->prepare("INSERT INTO administradores (usuario, nombre, apellido, password, editado, nivel) VALUES (?,?,?,?,NOW(),?) ");
             $stmt->bind_param("ssssi", $usuario, $nombre, $apellido, $password_hashed, $nivel);
