@@ -45,3 +45,19 @@ $('#repetir_password').on('input', function() {
         $('input#password').addClass('is-invalid').removeClass('is-valid');
     }
 });
+
+$(function () {
+    //Date range picker
+    $('#reservationdate').datetimepicker({
+        format: 'L'
+    });
+
+    //Initialize Select2 Elements
+    $('.select2').select2();
+
+    //Timepicker
+    $('#timepicker').datetimepicker({
+        format: 'LT'
+    });
+});
+

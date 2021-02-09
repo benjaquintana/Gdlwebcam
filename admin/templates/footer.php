@@ -30,6 +30,14 @@
 <script src="js/buttons.html5.min.js"></script>
 <script src="js/buttons.print.min.js"></script>
 <script src="js/buttons.colVis.min.js"></script>
+<!-- Moment -->
+<script src="js/moment.min.js"></script>
+<!-- date-range-picker -->
+<script src="js/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Select2 -->
+<script src="js/select2.full.min.js"></script>
 <!-- Font Awesome -->
 <script src="https://kit.fontawesome.com/f5164e1266.js" crossorigin="anonymous"></script>
 <!-- User jQuery -->

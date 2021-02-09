@@ -15,6 +15,12 @@
     <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="css/buttons.bootstrap4.min.css">
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="css/daterangepicker.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="css/tempusdominus-bootstrap-4.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="css/select2.min.css">
     <!-- Sweet Alert 2 -->
     <link rel="stylesheet" href="css/sweetalert2.min.css">
     <!-- Theme style -->
