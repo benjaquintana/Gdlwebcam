@@ -4,9 +4,9 @@
     // Funciones
     require_once 'funciones/funciones.php';
     $id = $_GET['id'];
-    if(!filter_var($id, FILTER_VALIDATE_INT)) {
+    if(!filter_var($id, FILTER_VALIDATE_INT)):
         die("Error!");
-    }
+    else:
     // Header
     require_once 'templates/header.php';
     // Barra
@@ -100,4 +100,5 @@
 <?php
     // Footer
     require_once 'templates/footer.php';
+    endif;
 ?>

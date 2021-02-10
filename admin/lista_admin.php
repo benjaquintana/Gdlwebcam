@@ -61,7 +61,7 @@
                                     <td><?php echo $admin['apellido'];?></td>
                                     <td>
                                         <a href="editar_admin.php?id=<?php echo $admin['id_admin']?>" class="btn bg-orange btn-flat margin editar_registro">
-                                            <i class="fa fa-pencil"></i>
+                                            <i class="fa fa-pencil blanco"></i>
                                         </a>
                                         <a href="#" data-id="<?php echo $admin['id_admin'];?>" data-tipo="admin" class="btn bg-maroon btn-flat margin borrar_registro">
                                             <i class="fa fa-trash"></i>

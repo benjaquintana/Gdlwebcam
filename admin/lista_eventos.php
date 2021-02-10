@@ -69,8 +69,8 @@
                                       <td><?php echo $eventos['cat_evento'];?></td>
                                       <td><?php echo $eventos['nombre_invitado'] . " " . $eventos['apellido_invitado']; ?></td>
                                       <td>
-                                          <a href="editar_admin.php?id=<?php echo $eventos['id_evento']?>" class="btn bg-orange btn-flat margin editar_registro">
-                                              <i class="fa fa-pencil"></i>
+                                          <a href="editar_eventos.php?id=<?php echo $eventos['id_evento']?>" class="btn bg-orange btn-flat margin editar_registro">
+                                              <i class="fa fa-pencil blanco"></i>
                                           </a>
                                           <a href="#" data-id="<?php echo $eventos['id_evento'];?>" data-tipo="evento" class="btn bg-maroon btn-flat margin borrar_registro">
                                               <i class="fa fa-trash"></i>

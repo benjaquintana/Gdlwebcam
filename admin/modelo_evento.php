@@ -2,21 +2,26 @@
     // Funciones
     require_once 'funciones/funciones.php';
     //Datos Comunes
-
+    $nombre = $_POST['nombre_evento'];
+    $categoria = $_POST['categoria'];
+    $invitado = $_POST['invitado'];
+    $fecha = $_POST['fecha_evento'];
+    $fecha_formateada = date('Y-m-d', strtotime($fecha));
+    $hora = $_POST['hora_evento'];
+    $hora_formateada = date('H:i:s', strtotime($hora));
+    $clave = "taller_17";
 
     //Nuevo Usuario
     if ($_POST['registro'] == 'nuevo'){
-
-        die(json_encode($_POST));
         try {
-            $stmt = $conn->prepare("INSERT INTO administradores (usuario, nombre, apellido, password, editado, nivel) VALUES (?,?,?,?,NOW(),?) ");
-            $stmt->bind_param("ssssi", $usuario, $nombre, $apellido, $password_hashed, $nivel);
+            $stmt = $conn->prepare("INSERT INTO eventos (nombre_evento, fecha_evento, hora_evento, id_cat_evento, id_inv, clave) VALUES (?,?,?,?,?,?) ");
+            $stmt->bind_param("sssiis", $nombre, $fecha_formateada, $hora_formateada, $categoria, $invitado, $clave);
             $stmt->execute();
-            $id_registro = $stmt->insert_id;
-            if($id_registro > 0) {
+            $id_evento = $stmt->insert_id;
+            if($stmt->affected_rows) {
                 $respuesta = array(
                     'respuesta' => 'exito',
-                    'id_admin' => $id_registro
+                    'id_evento' => $id_evento
                 );
             } else {
                 $respuesta = array(
@@ -26,7 +31,9 @@
             $stmt->close();
             $conn->close();
         } catch (Exception $e) {
-            echo "Error: " . $e->getMessage();
+            $respuesta = array(
+              'respuesta' => $e->getMessage()
+            );
         }
         die(json_encode($respuesta));
     }

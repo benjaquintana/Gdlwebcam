@@ -4,9 +4,9 @@
     // Funciones
     require_once 'funciones/funciones.php';
     $id = $_GET['id'];
-    if(!filter_var($id, FILTER_VALIDATE_INT)) {
+    if(!filter_var($id, FILTER_VALIDATE_INT)):
         die("Error!");
-    }
+    else:
     // Header
     require_once 'templates/header.php';
     // Barra
@@ -20,68 +20,123 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-            <h1>Editar Administrador</h1>
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Editar Evento</h1>
+                </div>
             </div>
         </div>
-        </div><!-- /.container-fluid -->
     </section>
 
     <!-- Main content -->
     <section class="content">
-
-        <!-- Default box -->
         <div class="row">
         <div class="col-md-8">
             <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Editar Administrador</h3>
+                <h3 class="card-title">Editar Evento</h3>
             </div>
 
             <div class="card-body">
                 <?php
-                    $sql = "SELECT * FROM administradores WHERE id_admin = $id ";
+                    $sql = "SELECT * FROM eventos WHERE id_evento = $id ";
                     $resultado = $conn->query($sql);
-                    $admin = $resultado->fetch_assoc();
+                    $evento = $resultado->fetch_assoc();
+
+                    echo "<pre>";
+                        var_dump($evento);
+                    echo "</pre>";
                 ?>
-                <!-- form start -->
-                <form role="form" name="guardar_registro" id="guardar_registro" method="post" action="modelo_admin.php">
-                <div class="card-body">
+                <form role="form" name="guardar_registro" id="guardar_registro" method="post" action="modelo_evento.php">
+                <div class="card-body has-validation">
+
+                    <!-- Nombre Evento -->
                     <div class="form-group">
-                        <label for="usuario">Usuario</label>
-                        <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Crea tu Usuario" value="<?php echo $admin['usuario']; ?>">
+                        <label for="nombre_evento">Nombre del Evento</label>
+                        <input type="text" class="form-control" id="nombre_evento" name="nombre_evento" placeholder="Crea tu Evento" value="<?php echo $evento['nombre_evento']; ?>">
                     </div>
+
+                    <!-- Categoría -->
                     <div class="form-group">
-                        <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresa tu Nombre" value="<?php echo $admin['nombre']; ?>">
-                    </div>
-                    <div class="form-group">
-                        <label for="nombre">Apellido</label>
-                        <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingresa tu Apellido"  value="<?php echo $admin['apellido']; ?>">
-                    </div>
-                    <div class="form-group">
-                        <label>Seleccione el Nivel del Administrador</label>
-                        <select id="nivel" class="custom-select" name="nivel" required>
-                            <option value="">-- Selecciona un Nivel --</option>
-                            <option value="1">Nivel 1</option>
-                            <option value="2">Nivel 2</option>
-                            <option value="3">Nivel 3</option>
-                            <option value="4">Nivel 4</option>
+                        <label>Categoría del Evento</label>
+                        <select required name="categoria" class="form-control select2" style="width: 100%;">
+                            <option value="<?php echo $evento['usuario']; ?>" selected="selected">-- Seleccione una Categoría --</option>
+                            <?php
+                                try {
+                                    $categoria_actual = $evento['id_cat_evento'];
+                                    $sql = "SELECT * FROM categoria_evento ";
+                                    $resultado = $conn->query($sql);
+                                    while($cat_evento = $resultado->fetch_assoc()) {
+                                        if($cat_evento['id_categoria'] == $categoria_actual) { ?>
+                                            <option value="<?php echo $cat_evento['id_categoria']; ?>" selected>
+                                                <?php echo $cat_evento['cat_evento'] ?>
+                                            </option>
+                                        <?php } else { ?>
+                                            <option value="<?php echo $cat_evento['id_categoria']; ?>">
+                                                <?php echo $cat_evento['cat_evento'] ?>
+                                            </option>
+                                        <?php }
+                                    }
+                                } catch (Exception $e) {
+                                    echo "Error: " . $e->getMessage();
+                                }
+                            ?>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Crea tu Password">
-                    </div>
-                </div>
-                <!-- /.card-body -->
 
-                <div class="card-footer">
-                    <input type="hidden" name="registro" value="actualizar">
-                    <input type="hidden" name="id_registro" value="<?php echo $id; ?>">
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-                </div>
+                    <!-- Invitado -->
+                    <div class="form-group">
+                        <label>Nombre del Invitado</label>
+                        <select required name="invitado" class="form-control select2" style="width: 100%;">
+                            <option value="<?php echo $evento['usuario']; ?>"  selected="selected">-- Seleccione un Invitado --</option>
+                            <?php
+                                try {
+                                    $sql = "SELECT id_invitado, nombre_invitado, apellido_invitado FROM invitados ";
+                                    $resultado = $conn->query($sql);
+                                    while($invitados = $resultado->fetch_assoc()) { ?>
+                                        <option value="<?php echo $invitados['id_invitado']; ?>">
+                                            <?php echo $invitados['nombre_invitado'] . " " . $invitados['apellido_invitado']; ?>
+                                        </option>
+                                    <?php }
+                                } catch (Exception $e) {
+                                    echo "Error: " . $e->getMessage();
+                                }
+                            ?>
+                        </select>
+                    </div>
+
+                    <!-- Fecha -->
+                    <div class="form-group">
+                        <label>Fecha del Evento</label>
+                        <?php
+                            $fecha = $evento['fecha_evento'];
+                            $fecha_formateada = date('m/d/Y', strtotime($fecha));
+                        ?>
+                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                            <input type="text" class="form-control datetimepicker-input" name="fecha_evento" data-target="#reservationdate" data-toggle="datetimepicker" value="<?php echo $fecha_formateada; ?>">
+                        </div>
+                    </div>
+
+                    <!-- Hora -->
+                    <div class="bootstrap-timepicker">
+                        <div class="form-group">
+                            <label>Hora del Evento</label>
+                            <div class="input-group date" id="timepicker" data-target-input="nearest">
+                                <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                </div>
+                                <input type="text" class="form-control datetimepicker-input" name="hora_evento" data-target="#timepicker" data-toggle="datetimepicker" value="<?php echo $evento['usuario']; ?>">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <input type="hidden" name="registro" value="actualizar">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
                 </form>
             </div>
             <!-- /.card-body -->
@@ -100,4 +155,5 @@
 <?php
     // Footer
     require_once 'templates/footer.php';
+    endif;
 ?>
