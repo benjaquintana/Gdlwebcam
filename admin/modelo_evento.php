@@ -2,6 +2,7 @@
     // Funciones
     require_once 'funciones/funciones.php';
     //Datos Comunes
+    $id_registro = $_POST['id_registro'];
     $nombre = $_POST['nombre_evento'];
     $categoria = $_POST['categoria'];
     $invitado = $_POST['invitado'];
@@ -9,7 +10,7 @@
     $fecha_formateada = date('Y-m-d', strtotime($fecha));
     $hora = $_POST['hora_evento'];
     $hora_formateada = date('H:i:s', strtotime($hora));
-    $clave = "taller_17";
+    $clave = "error";
 
     //Nuevo Usuario
     if ($_POST['registro'] == 'nuevo'){
@@ -41,22 +42,13 @@
     //Editar Usuario
     if ($_POST['registro'] == 'actualizar'){
         try {
-            if(empty($_POST['password'])) {
-                $stmt = $conn->prepare('UPDATE administradores SET usuario = ?, nombre = ?, apellido = ?, editado = NOW(), nivel = ? WHERE id_admin = ? ');
-                $stmt->bind_param("sssii", $usuario, $nombre, $apellido, $nivel, $id_registro);
-            } else {
-                $opciones = array(
-                'cost' => 12
-                );
-                $hash_password = password_hash($password, PASSWORD_BCRYPT, $opciones);
-                $stmt = $conn->prepare('UPDATE administradores SET usuario = ?, nombre = ?, apellido = ?, password = ?, editado = NOW(), nivel = ? WHERE id_admin = ? ');
-                $stmt->bind_param("ssssii", $usuario, $nombre, $apellido, $hash_password, $nivel, $id_registro);
-            }
+            $stmt = $conn->prepare("UPDATE eventos SET nombre_evento = ?, fecha_evento = ?, hora_evento = ?, id_cat_evento = ?, id_inv = ?, clave = ? WHERE id_evento = ? ");
+            $stmt->bind_param("sssiisi", $nombre, $fecha_formateada, $hora_formateada, $categoria, $invitado, $clave, $id_registro);
             $stmt->execute();
             if($stmt->affected_rows) {
                 $respuesta = array(
                     'respuesta' => 'exito',
-                    'id_actualizado' => $stmt->insert_id
+                    'id_actualizado' => $id_registro
                 );
             } else {
               $respuesta = array(
@@ -77,7 +69,7 @@
     if ($_POST['registro'] == 'eliminar'){
         $id_borrar = $_POST['id'];
         try {
-            $stmt = $conn->prepare('DELETE FROM administradores WHERE id_admin = ? ');
+            $stmt = $conn->prepare('DELETE FROM eventos WHERE id_evento = ? ');
             $stmt->bind_param('i', $id_borrar);
             $stmt->execute();
             if($stmt->affected_rows) {

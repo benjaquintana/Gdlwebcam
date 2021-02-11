@@ -42,10 +42,6 @@
                     $sql = "SELECT * FROM eventos WHERE id_evento = $id ";
                     $resultado = $conn->query($sql);
                     $evento = $resultado->fetch_assoc();
-
-                    echo "<pre>";
-                        var_dump($evento);
-                    echo "</pre>";
                 ?>
                 <form role="form" name="guardar_registro" id="guardar_registro" method="post" action="modelo_evento.php">
                 <div class="card-body has-validation">
@@ -91,13 +87,20 @@
                             <option value="<?php echo $evento['usuario']; ?>"  selected="selected">-- Seleccione un Invitado --</option>
                             <?php
                                 try {
+                                    $invitado_actual = $evento['id_inv'];
                                     $sql = "SELECT id_invitado, nombre_invitado, apellido_invitado FROM invitados ";
                                     $resultado = $conn->query($sql);
-                                    while($invitados = $resultado->fetch_assoc()) { ?>
-                                        <option value="<?php echo $invitados['id_invitado']; ?>">
+                                    while($invitados = $resultado->fetch_assoc()) {
+                                        if($invitados['id_invitado'] == $invitado_actual) { ?>
+                                        <option value="<?php echo $invitados['id_invitado']; ?>" selected>
                                             <?php echo $invitados['nombre_invitado'] . " " . $invitados['apellido_invitado']; ?>
                                         </option>
-                                    <?php }
+                                        <?php } else { ?>
+                                            <option value="<?php echo $invitados['id_invitado']; ?>">
+                                            <?php echo $invitados['nombre_invitado'] . " " . $invitados['apellido_invitado']; ?>
+                                        </option>
+                                        <?php }
+                                    }
                                 } catch (Exception $e) {
                                     echo "Error: " . $e->getMessage();
                                 }
@@ -124,17 +127,22 @@
                     <div class="bootstrap-timepicker">
                         <div class="form-group">
                             <label>Hora del Evento</label>
+                            <?php
+                                $hora = $evento['hora_evento'];
+                                $hora_formateada = date('H:i a', strtotime($hora));
+                            ?>
                             <div class="input-group date" id="timepicker" data-target-input="nearest">
                                 <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="far fa-clock"></i></div>
                                 </div>
-                                <input type="text" class="form-control datetimepicker-input" name="hora_evento" data-target="#timepicker" data-toggle="datetimepicker" value="<?php echo $evento['usuario']; ?>">
+                                <input type="text" class="form-control datetimepicker-input" name="hora_evento" data-target="#timepicker" data-toggle="datetimepicker" value="<?php echo $hora_formateada; ?>">
                             </div>
                         </div>
                     </div>
 
                     <div class="card-footer">
                         <input type="hidden" name="registro" value="actualizar">
+                        <input type="hidden" name="id_registro" value="<?php echo $id; ?>">
                         <button type="submit" class="btn btn-primary">Guardar</button>
                     </div>
                 </form>
