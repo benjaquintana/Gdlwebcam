@@ -75,11 +75,12 @@ $(function() {
 
     IconPicker.Run('#GetIconPicker', function(){
 
-    Swal.fire(
-        'Perfecto!',
-        'Has seleccionado un icono!',
-        'success'
-    )
+    Swal.fire({
+        icon: 'success',
+        title: 'Perfecto!',
+        text: 'Has seleccionado un icono!',
+        timer: 1300
+    })
 
     });
 
