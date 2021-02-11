@@ -40,6 +40,10 @@
 <script src="js/select2.full.min.js"></script>
 <!-- Font Awesome -->
 <script src="https://kit.fontawesome.com/f5164e1266.js" crossorigin="anonymous"></script>
+<!-- Font Awesome Icon Picker -->
+<!--<script src="https://cdn.jsdelivr.net/npm/notiflix/dist/AIO/notiflix-aio-1.9.1.min.js"></script>-->
+<script src="js/index-tooltip.js"></script>
+<script src="js/iconpicker-1.5.0.js"></script>
 <!-- User jQuery -->
 <script src="js/login_ajax.js"></script>
 <script src="js/admin_ajax.js"></script>
