@@ -58,7 +58,7 @@
                                     <td><?php echo $categoria['cat_evento'];?></td>
                                     <td><i class="fas <?php echo $categoria['icono'];?>"></i></td>
                                     <td>
-                                        <a href="editar_admin.php?id=<?php echo $categoria['id_categoria']?>" class="btn bg-orange btn-flat margin editar_registro">
+                                        <a href="editar_categorias.php?id=<?php echo $categoria['id_categoria']?>" class="btn bg-orange btn-flat margin editar_registro">
                                             <i class="fa fa-pencil blanco"></i>
                                         </a>
                                         <a href="#" data-id="<?php echo $categoria['id_categoria'];?>" data-tipo="categoria" class="btn bg-maroon btn-flat margin borrar_registro">

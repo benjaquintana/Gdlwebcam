@@ -11,11 +11,12 @@ $(document).ready(function() {
             success: function(data) {
                 var resultado = data;
                 if(resultado.respuesta == "exitoso") {
-                    Swal.fire(
-                        'Login Correcto',
-                        'Bienvenido(a) '+resultado.usuario+'',
-                        'success'
-                    )
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Login Correcto',
+                        text: 'Bienvenido(a) '+resultado.usuario+'',
+                        timer: 1300
+                    })
                     setTimeout(function(){
                         window.location.href = 'admin_area.php';
                     }, 1000);

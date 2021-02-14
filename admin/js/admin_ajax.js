@@ -26,7 +26,41 @@ $(document).ready(function() {
                 }
             }
         })
+    });
 
+    //Guardar Registro con Archivo
+    $('#guardar_registro_archivo').on('submit', function(e) {
+        e.preventDefault();
+
+        var datos = new FormData(this);
+
+        $.ajax({
+            type: $(this).attr('method'),
+            data: datos,
+            url: $(this).attr('action'),
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            async: true,
+            cache: false,
+            success: function(data) {
+              console.log(data);
+                var resultado = data;
+                if(resultado.respuesta == "exito") {
+                    Swal.fire(
+                        'Correcto',
+                        'El adminstrador se guardo correctamente',
+                        'success'
+                    )
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Hubo un error'
+                    })
+                }
+            }
+        })
     });
 
     //Eliminar Registro

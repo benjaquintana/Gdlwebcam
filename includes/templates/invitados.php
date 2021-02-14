@@ -16,7 +16,7 @@
             <li>
               <div class="invitado">
                 <a class="invitado_info" href="#invitado<?php echo $invitados['id_invitado']; ?>">
-                  <img src="img/<?php echo $invitados['url_imagen'] ?>" alt="imagen_invitado">
+                  <img src="img/invitados/<?php echo $invitados['url_imagen'] ?>" alt="imagen_invitado">
                   <p><?php echo $invitados['nombre_invitado'] . " " . $invitados['apellido_invitado'] ?></p>
                 </a>
               </div>

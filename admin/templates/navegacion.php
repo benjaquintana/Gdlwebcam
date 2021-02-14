@@ -115,15 +115,15 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="lista_invitados.php" class="nav-link">
                   <i class="fas fa-list-alt nav-icon"></i>
                   <p>Ver Todos</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="crear_invitados.php" class="nav-link">
                   <i class="fas fa-calendar-plus nav-icon"></i>
-                  <p>Agregar Eventos</p>
+                  <p>Agregar Invitados</p>
                 </a>
               </li>
             </ul>

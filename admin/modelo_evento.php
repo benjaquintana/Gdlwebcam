@@ -15,7 +15,7 @@
     //Nuevo Usuario
     if ($_POST['registro'] == 'nuevo'){
         try {
-            $stmt = $conn->prepare("INSERT INTO eventos (nombre_evento, fecha_evento, hora_evento, id_cat_evento, id_inv, clave) VALUES (?,?,?,?,?,?) ");
+            $stmt = $conn->prepare("INSERT INTO eventos (nombre_evento, fecha_evento, hora_evento, id_cat_evento, id_inv, clave, editado) VALUES (?,?,?,?,?,?,NOW()) ");
             $stmt->bind_param("sssiis", $nombre, $fecha_formateada, $hora_formateada, $categoria, $invitado, $clave);
             $stmt->execute();
             $id_evento = $stmt->insert_id;
@@ -42,7 +42,7 @@
     //Editar Usuario
     if ($_POST['registro'] == 'actualizar'){
         try {
-            $stmt = $conn->prepare("UPDATE eventos SET nombre_evento = ?, fecha_evento = ?, hora_evento = ?, id_cat_evento = ?, id_inv = ?, clave = ? WHERE id_evento = ? ");
+            $stmt = $conn->prepare("UPDATE eventos SET nombre_evento = ?, fecha_evento = ?, hora_evento = ?, id_cat_evento = ?, id_inv = ?, clave = ?, editado = NOW() WHERE id_evento = ? ");
             $stmt->bind_param("sssiisi", $nombre, $fecha_formateada, $hora_formateada, $categoria, $invitado, $clave, $id_registro);
             $stmt->execute();
             if($stmt->affected_rows) {

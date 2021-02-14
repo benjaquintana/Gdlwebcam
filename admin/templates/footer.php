@@ -17,6 +17,8 @@
 <script src="js/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="js/bootstrap.bundle.min.js"></script>
+<!-- bs-custom-file-input -->
+<script src="js/bs-custom-file-input.min.js"></script>
 <!-- DataTables  & Plugins -->
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/dataTables.bootstrap4.min.js"></script>
@@ -41,8 +43,6 @@
 <!-- Font Awesome -->
 <script src="https://kit.fontawesome.com/f5164e1266.js" crossorigin="anonymous"></script>
 <!-- Font Awesome Icon Picker -->
-<!--<script src="https://cdn.jsdelivr.net/npm/notiflix/dist/AIO/notiflix-aio-1.9.1.min.js"></script>-->
-<script src="js/index-tooltip.js"></script>
 <script src="js/iconpicker-1.5.0.js"></script>
 <!-- User jQuery -->
 <script src="js/login_ajax.js"></script>
