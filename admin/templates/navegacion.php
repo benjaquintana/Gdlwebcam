@@ -73,7 +73,7 @@
               <li class="nav-item">
                 <a href="crear_eventos.php" class="nav-link">
                   <i class="fas fa-calendar-plus nav-icon"></i>
-                  <p>Agregar Eventos</p>
+                  <p>Agregar</p>
                 </a>
               </li>
             </ul>
@@ -98,7 +98,7 @@
               <li class="nav-item">
                 <a href="crear_categorias.php" class="nav-link">
                   <i class="fas fa-calendar-plus nav-icon"></i>
-                  <p>Agregar Categoría</p>
+                  <p>Agregar</p>
                 </a>
               </li>
             </ul>
@@ -123,7 +123,7 @@
               <li class="nav-item">
                 <a href="crear_invitados.php" class="nav-link">
                   <i class="fas fa-calendar-plus nav-icon"></i>
-                  <p>Agregar Invitados</p>
+                  <p>Agregar</p>
                 </a>
               </li>
             </ul>
@@ -140,15 +140,15 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="lista_registrados.php" class="nav-link">
                   <i class="fas fa-list-alt nav-icon"></i>
                   <p>Ver Todos</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="crear_registro.php" class="nav-link">
                   <i class="fas fa-calendar-plus nav-icon"></i>
-                  <p>Agregar Eventos</p>
+                  <p>Agregar</p>
                 </a>
               </li>
             </ul>
@@ -174,7 +174,7 @@
               <li class="nav-item">
                 <a href="crear_admin.php" class="nav-link">
                   <i class="fas fa-calendar-plus nav-icon"></i>
-                  <p>Agregar Administrador</p>
+                  <p>Agregar</p>
                 </a>
               </li>
             </ul>
@@ -200,7 +200,7 @@
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="fas fa-calendar-plus nav-icon"></i>
-                  <p>Agregar Eventos</p>
+                  <p>Agregar</p>
                 </a>
               </li>
             </ul>
