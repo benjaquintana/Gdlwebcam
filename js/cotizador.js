@@ -41,6 +41,14 @@
         email.addEventListener('blur', validarCampos);
         email.addEventListener('blur', validarEmail);
 
+        // mostrar en editar
+        var formulario_editar = document.getElementsByClassName('editar_registrado');
+        if(formulario_editar.length > 0) {
+            if(pase_dia.value || pase_dosdias.value || pase_completo) {
+              mostrarDias();
+            }
+        }
+
         function validarCampos(){
             if(this.value == '') {
                 errorDiv.style.display= 'block';

@@ -5,17 +5,17 @@
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
     $email = $_POST['email'];
-
+    $fecha_registro = $_POST['fecha_registro'];
+    $id_registro = $_POST['id_registro'];
+    $total = $_POST['total_pedido'];
+    $regalos = $_POST['regalo'];
     //Boletos
     $boletos_adquiridos = $_POST['boletos'];
     //Camisas y Etiquetas
     $camisas = $_POST['pedido_extra']['camisas']['cantidad'];
     $camisas = $_POST['pedido_extra']['etiquetas']['cantidad'];
-
     $pedido = productos_json($boletos_adquiridos, $camisas, $etiquetas);
-
-    $total = $_POST['total_pedido'];
-    $regalos = $_POST['regalo'];
+    //Eventos Seleccionados
     $eventos = $_POST['registro_evento'];
     $registro_eventos = eventos_json($eventos);
 
@@ -47,22 +47,13 @@
     //Editar Usuario
     if ($_POST['registro'] == 'actualizar'){
         try {
-            if(empty($_POST['password'])) {
-                $stmt = $conn->prepare('UPDATE administradores SET usuario = ?, nombre = ?, apellido = ?, editado = NOW(), nivel = ? WHERE id_admin = ? ');
-                $stmt->bind_param("sssii", $usuario, $nombre, $apellido, $nivel, $id_registro);
-            } else {
-                $opciones = array(
-                'cost' => 12
-                );
-                $hash_password = password_hash($password, PASSWORD_BCRYPT, $opciones);
-                $stmt = $conn->prepare('UPDATE administradores SET usuario = ?, nombre = ?, apellido = ?, password = ?, editado = NOW(), nivel = ? WHERE id_admin = ? ');
-                $stmt->bind_param("ssssii", $usuario, $nombre, $apellido, $hash_password, $nivel, $id_registro);
-            }
+            $stmt = $conn->prepare('UPDATE registrados SET nombre_registrado = ?, apellido_registrado = ?, email_registrado = ?, fecha_registro = ?, pases_articulos = ?, talleres_registrados = ?, regalo =?, total_pagado = ?, pagado = 1 WHERE id_registrado = ? ');
+            $stmt->bind_param("ssssssisi", $nombre, $apellido, $email, $fecha_registro, $pedido, $registro_eventos, $regalos, $total, $id_registro);
             $stmt->execute();
             if($stmt->affected_rows) {
                 $respuesta = array(
                     'respuesta' => 'exito',
-                    'id_actualizado' => $stmt->insert_id
+                    'id_actualizado' => $id_registro
                 );
             } else {
               $respuesta = array(
@@ -83,7 +74,7 @@
     if ($_POST['registro'] == 'eliminar'){
         $id_borrar = $_POST['id'];
         try {
-            $stmt = $conn->prepare('DELETE FROM administradores WHERE id_admin = ? ');
+            $stmt = $conn->prepare('DELETE FROM registrados WHERE id_registrado = ? ');
             $stmt->bind_param('i', $id_borrar);
             $stmt->execute();
             if($stmt->affected_rows) {
