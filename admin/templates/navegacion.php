@@ -147,7 +147,7 @@
               </li>
               <li class="nav-item">
                 <a href="crear_registro.php" class="nav-link">
-                  <i class="fas fa-calendar-plus nav-icon"></i>
+                  <i class="fas fa-user-plus nav-icon"></i>
                   <p>Agregar</p>
                 </a>
               </li>

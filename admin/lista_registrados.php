@@ -40,7 +40,6 @@
                       <thead>
                           <tr>
                               <th>Nombre</th>
-                              <th>Apellido</th>
                               <th>Email</th>
                               <th>Fecha</th>
                               <th>Articulos</th>
@@ -65,7 +64,7 @@
                               while($registrados = $resultado->fetch_assoc() ) { ?>
                                   <tr>
                                     <td>
-                                        <?php echo $registrados['nombre_registrado'];
+                                        <?php echo $registrados['nombre_registrado'] . " " . $registrados['apellido_registrado'];
                                         $pagado = $registrados['pagado'];
                                         if($pagado > 0){
                                             echo '<span class="badge bg-green">Pagado</span>';
@@ -73,7 +72,6 @@
                                             echo '<span class="badge bg-red">No Pagado</span>';
                                         }
                                     ?></td>
-                                    <td><?php echo $registrados['apellido_registrado'];?></td>
                                     <td><?php echo $registrados['email_registrado'];?></td>
                                     <td><?php echo $registrados['fecha_registro'];?></td>
                                     <td>
@@ -110,6 +108,7 @@
                                         <a href="editar_registro.php?id=<?php echo $registrados['id_registrado']?>" class="btn bg-orange btn-flat margin editar_registro">
                                             <i class="fa fa-pencil blanco"></i>
                                         </a>
+                                        <br>
                                         <a href="#" data-id="<?php echo $registrados['id_registrado'];?>" data-tipo="registrado" class="btn bg-maroon btn-flat margin borrar_registro">
                                             <i class="fa fa-trash"></i>
                                         </a>
@@ -120,7 +119,6 @@
                       <tfoot>
                           <tr>
                               <th>Nombre</th>
-                              <th>Apellido</th>
                               <th>Email</th>
                               <th>Fecha</th>
                               <th>Articulos</th>

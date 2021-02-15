@@ -28,6 +28,6 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="css/adminlte.min.css">
     <!-- User style -->
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles_admin.css">
 
 </head>

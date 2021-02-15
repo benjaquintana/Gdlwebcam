@@ -3,6 +3,10 @@
     require_once 'funciones/sesiones.php';
     // Funciones
     require_once 'funciones/funciones.php';
+    $id = $_GET['id'];
+    if(!filter_var($id, FILTER_VALIDATE_INT)):
+        die("Error!");
+    else:
     // Header
     require_once 'templates/header.php';
     // Barra
@@ -36,26 +40,35 @@
             </div>
 
             <div class="card-body">
-                <!-- form start -->
+                <?php
+                    $sql = "SELECT * FROM registrados WHERE id_registrado = $id ";
+                    $resultado = $conn->query($sql);
+                    $registrado = $resultado->fetch_assoc();
+
+                    echo "<pre>";
+                    var_dump($registrado);
+                    echo "</pre>";
+                ?>
+                <!-- Form -->
                 <form role="form" name="guardar_registro" id="guardar_registro" method="post" action="modelo_registrados.php">
                 <div class="card-body has-validation">
 
                     <!-- Nombre -->
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresa tu Nombre Completo">
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresa tu Nombre Completo" value="<?php echo $registrado['nombre_registrado']; ?>">
                     </div>
 
                     <!-- Apellido -->
                     <div class="form-group">
                         <label for="apellido">Apellido</label>
-                        <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingresa tu Apellido">
+                        <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingresa tu Apellido" value="<?php echo $registrado['apellido_registrado']; ?>">
                     </div>
 
-                    <!-- Apellido -->
+                    <!-- Email -->
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="text" class="form-control" id="email" name="email" placeholder="Ingresa tu Email">
+                        <input type="text" class="form-control" id="email" name="email" placeholder="Ingresa tu Email" value="<?php echo $registrado['email_registrado']; ?>">
                     </div>
 
                     <!-- Boletos -->
@@ -227,7 +240,9 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                    <input type="hidden" name="registro" value="nuevo">
+                    <input type="hidden" name="registro" value="actualizar">
+                    <input type="hidden" name="id_registro" value="<?php echo $registrado['id_registrado']; ?>">
+                    <input type="hidden" name="fecha_registro" value="<?php echo $registrado['fecha_registro']; ?>">
                     <button type="submit" class="btn btn-primary" id="btnRegistro">Añadir</button>
                 </div>
                 </form>
@@ -248,4 +263,5 @@
 <?php
     // Footer
     require_once 'templates/footer.php';
+    endif;
 ?>

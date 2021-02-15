@@ -2,24 +2,28 @@
     // Funciones
     require_once 'funciones/funciones.php';
     //Datos Comunes
-    $usuario = $_POST['usuario'];
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
-    $password = $_POST['password'];
-    $id_registro = $_POST['id_registro'];
-    $nivel = $_POST['nivel'];
-    $fecha = date('Y-m-d H:i:s');
+    $email = $_POST['email'];
+
+    //Boletos
+    $boletos_adquiridos = $_POST['boletos'];
+    //Camisas y Etiquetas
+    $camisas = $_POST['pedido_extra']['camisas']['cantidad'];
+    $camisas = $_POST['pedido_extra']['etiquetas']['cantidad'];
+
+    $pedido = productos_json($boletos_adquiridos, $camisas, $etiquetas);
+
+    $total = $_POST['total_pedido'];
+    $regalos = $_POST['regalo'];
+    $eventos = $_POST['registro_evento'];
+    $registro_eventos = eventos_json($eventos);
 
     //Nuevo Usuario
     if ($_POST['registro'] == 'nuevo'){
-        $opciones = array(
-            'cost' => 12
-        );
-        $password_hashed = password_hash($password, PASSWORD_BCRYPT, $opciones);
-
         try {
-            $stmt = $conn->prepare("INSERT INTO administradores (usuario, nombre, apellido, password, editado, nivel) VALUES (?,?,?,?,NOW(),?) ");
-            $stmt->bind_param("ssssi", $usuario, $nombre, $apellido, $password_hashed, $nivel);
+            $stmt = $conn->prepare("INSERT INTO registrados (nombre_registrado, apellido_registrado, email_registrado, fecha_registro, pases_articulos, talleres_registrados, regalo, total_pagado, pagado) VALUES (?,?,?,NOW(),?,?,?,?,1) ");
+            $stmt->bind_param("sssssis", $nombre, $apellido, $email, $pedido, $registro_eventos, $regalos, $total);
             $stmt->execute();
             $id_registro = $stmt->insert_id;
             if($id_registro > 0) {

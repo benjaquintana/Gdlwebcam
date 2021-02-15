@@ -19,7 +19,8 @@
                 <input type="email" name="email" id="email" placeholder="Tu Email">
             </div>
             <div id="error"></div>
-        </div><!--Datos Usuario-->
+        </div><!--/Datos Usuario-->
+
         <div id="paquetes" class="paquetes">
             <h3>Elige el número de boletos</h3>
             <ul class="lista_precios clearfix">
@@ -133,6 +134,7 @@
                 <?php } ?>
             </div><!--.caja-->
         </div> <!--#eventos-->
+
         <div id="resumen" class="resumen">
             <h3>Pago y Extras</h3>
             <div class="caja clearfix">
