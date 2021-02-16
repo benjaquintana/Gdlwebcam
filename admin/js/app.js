@@ -89,3 +89,68 @@ $(function() {
 
 });
 
+$(function () {
+
+    $.getJSON('servicio_registrados.php', function(data) {
+        console.log(data)
+        var fecha_registro=[];
+        var cantidad_registro=[];
+
+        for(var i=0; i< data.length; i++){
+              fecha_registro[i]=data[i].fecha;
+              cantidad_registro[i]=data[i].cantidad;
+        }
+        console.log(fecha_registro);
+        console.log(cantidad_registro);
+
+        // Get context with jQuery - using jQuery's .get() method.
+        var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
+
+        var lineChartData = {
+          labels  : fecha_registro,
+          datasets: [
+            {
+              label               : 'Registrados',
+              backgroundColor     : 'rgba(60,141,188,0.9)',
+              borderColor         : 'rgba(60,141,188,0.8)',
+              pointRadius         : '3',
+              pointColor          : '#3b8bba',
+              pointStrokeColor    : 'rgba(60,141,188,1)',
+              pointHighlightFill  : '#fff',
+              pointHighlightStroke: 'rgba(60,141,188,1)',
+              data                : cantidad_registro
+            }
+          ]
+        }
+
+        var lineChartOptions = {
+          maintainAspectRatio : false,
+          responsive : true,
+          legend: {
+            display: true
+          },
+          scales: {
+            xAxes: [{
+              gridLines : {
+                display : false,
+              }
+            }],
+            yAxes: [{
+              gridLines : {
+                display : true,
+              }
+            }]
+          }
+        }
+        lineChartData.datasets[0].fill = false;
+        //lineChartData.datasets[1].fill = false;
+        lineChartOptions.datasetFill = false
+
+        // This will get the first returned node in the jQuery collection.
+        new Chart(lineChartCanvas, {
+          type: 'line',
+          data: lineChartData,
+          options: lineChartOptions
+        })
+    })
+})

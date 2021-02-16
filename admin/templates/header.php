@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="css/buttons.bootstrap4.min.css">
+    <!-- ChartJS -->
+    <link rel="stylesheet" href="css/Chart.min.css">
     <!-- daterange picker -->
     <link rel="stylesheet" href="css/daterangepicker.css">
     <!-- Tempusdominus Bootstrap 4 -->

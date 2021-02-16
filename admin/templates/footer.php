@@ -32,6 +32,8 @@
 <script src="js/buttons.html5.min.js"></script>
 <script src="js/buttons.print.min.js"></script>
 <script src="js/buttons.colVis.min.js"></script>
+<!-- ChartJS -->
+<script src="js/Chart.min.js"></script>
 <!-- Moment -->
 <script src="js/moment.min.js"></script>
 <!-- date-range-picker -->
@@ -53,9 +55,8 @@
 <script src="js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="js/demo.js"></script>
-<!-- Cotizador -->
+<!-- User Scripts -->
 <script src="../js/cotizador.js"></script>
-<!-- Page specific script -->
 <script src="js/app.js"></script>
 </body>
 </html>
